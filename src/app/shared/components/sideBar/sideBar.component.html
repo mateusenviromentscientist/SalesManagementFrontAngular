@@ -1,0 +1,23 @@
+<mat-sidenav-container class="shell" [class.collapsed]="collapsed()">
+  <mat-sidenav class="sidebar" mode="side" [opened]="true">
+    <mat-toolbar color="primary" class="sidebar-toolbar">
+      <button mat-icon-button (click)="toggle()" aria-label="Collapse/Expand">
+        <mat-icon>{{ collapsed() ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+      </button>
+      <span class="brand" *ngIf="!collapsed()">Sales Manager</span>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let i of nav" [routerLink]="i.link" routerLinkActive="active">
+        <mat-icon matListItemIcon>{{ i.icon }}</mat-icon>
+        <span matListItemTitle *ngIf="!collapsed()">{{ i.label }}</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <div class="page">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

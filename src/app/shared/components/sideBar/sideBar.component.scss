@@ -1,0 +1,29 @@
+:host, .shell { height: 100dvh; display: block; }
+
+.shell {
+  --expanded: 240px;
+  --collapsed: 64px;
+  --transition: 180ms ease;
+}
+
+.sidebar {
+  width: var(--expanded);
+  transition: width var(--transition);
+  border-right: 1px solid rgba(0,0,0,0.12);
+
+  .sidebar-toolbar {
+    display: flex; gap: 8px; align-items: center;
+    .brand { font-weight: 600; margin-left: 4px; }
+  }
+}
+
+.shell.collapsed .sidebar {
+  width: var(--collapsed);
+  overflow-x: hidden;
+}
+
+.content { display: flex; flex-direction: column; min-width: 0; }
+.topbar { position: sticky; top: 0; z-index: 2;
+  .spacer { flex: 1; }
+}
+.page { padding: 16px; }
