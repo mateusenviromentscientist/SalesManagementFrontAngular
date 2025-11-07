@@ -1,0 +1,21 @@
+.table-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .loading-overlay {
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+  }
+
+  .create-button{
+    width: 8%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+}

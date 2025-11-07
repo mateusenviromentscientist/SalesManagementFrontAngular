@@ -1,0 +1,73 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="product-form mat-elevation-z2">
+
+  <!-- Code -->
+  <mat-form-field appearance="outline">
+    <mat-label>Code</mat-label>
+    <input matInput formControlName="code" required />
+    <mat-hint>Unique product code</mat-hint>
+    <mat-error *ngIf="hasError('code','required')">Code is required</mat-error>
+  </mat-form-field>
+
+  <!-- Title -->
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" required />
+    <mat-error *ngIf="hasError('title','required')">Title is required</mat-error>
+  </mat-form-field>
+
+  <!-- Price -->
+  <mat-form-field appearance="outline">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" step="0.01" formControlName="price" required />
+    <mat-error *ngIf="hasError('price','required')">Price is required</mat-error>
+    <mat-error *ngIf="hasError('price','min')">Price must be ≥ 0</mat-error>
+  </mat-form-field>
+
+  <!-- Category -->
+  <mat-form-field appearance="outline">
+    <mat-label>Category</mat-label>
+    <input matInput formControlName="category" />
+  </mat-form-field>
+
+  <!-- Rate -->
+  <mat-form-field appearance="outline">
+    <mat-label>Rate</mat-label>
+    <input matInput type="number" step="0.1" formControlName="rate" />
+  </mat-form-field>
+
+  <!-- Count -->
+  <mat-form-field appearance="outline">
+    <mat-label>Count</mat-label>
+    <input matInput type="number" formControlName="count" />
+  </mat-form-field>
+
+  <!-- Description (full width) -->
+  <mat-form-field class="full" appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description" rows="4"></textarea>
+  </mat-form-field>
+
+  <!-- Image upload -->
+  <div class="file-field full">
+    <input #fileInput type="file" (change)="onFile($event)" hidden />
+    <button type="button" mat-stroked-button (click)="fileInput.click()">
+      <mat-icon>attach_file</mat-icon>
+      Choose Image
+    </button>
+    <span class="file-name" *ngIf="form.value.image as f">{{ f?.name }}</span>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions full">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || uploading">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+    <button mat-button type="reset" (click)="form.reset()">Reset</button>
+    <!-- Optional cancel/back -->
+    <!-- <button mat-button routerLink="/products">Cancel</button> -->
+  </div>
+
+  <!-- Upload progress -->
+  <mat-progress-bar *ngIf="uploading" [value]="progress" mode="determinate"></mat-progress-bar>
+</form>
