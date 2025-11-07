@@ -1,4 +1,3 @@
-// src/app/products/product-form/product-form.component.ts
 import { Component, inject } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule }      from '@angular/material/input';
