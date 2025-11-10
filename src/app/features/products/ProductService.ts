@@ -6,6 +6,7 @@ import { Product } from "./models/GetProductModel";
 import { PaginatedResponse } from "../../shared/PaginatedReponseModel";
 import { CreateProductModel } from "./models/CreateProductModel";
 import { Helpers } from "../../shared/Helpers";
+import { UUID } from "crypto";
 
 @Injectable({
     providedIn: 'root'
@@ -29,5 +30,11 @@ export class ProductService{
         });
 
         return this.httpClient.request(req);
+    }
+
+    removeProductAsync(id:string):Observable<HttpEvent<any>>{
+
+        const request = new HttpRequest('DELETE', `${this.apiUrl}/${id}`)
+        return this.httpClient.request(request);
     }
 }
